@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -11,11 +11,11 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Tv from './pages/Tv';
+import Balance from './pages/Balance'; // yinjijwe hano
 
 import { MdAccountBalance } from 'react-icons/md';
 import './App.css';
 
-// Context
 import { UserProvider } from './contexts/UserContext';
 
 const App = () => {
@@ -31,23 +31,17 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/posts/:id" element={<PostDetails />} />
-
-            {/* Pages zashya */}
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/tv" element={<Tv />} />
+            <Route path="/balance" element={<Balance />} /> {/* Balance Page */}
           </Routes>
 
           <Footer />
 
-          <a
-            href="/Balance.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="floating-btn"
-          >
+          <Link to="/balance" className="floating-btn">
             <MdAccountBalance size={24} />
-          </a>
+          </Link>
         </div>
       </Router>
     </UserProvider>
