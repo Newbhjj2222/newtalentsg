@@ -1,27 +1,54 @@
-// Login.js
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState(""); // ushobora gutanga username mu buryo buhendutse
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
 
     try {
+      // 1. Injiza user
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-      // Kubika username muri localStorage (wenda wayihaye mu ifishi)
-      localStorage.setItem("username", username || email.split("@")[0]);
+      // 2. Fata document ya "data"
+      const docRef = doc(db, "userdate", "data");
+      const docSnap = await getDoc(docRef);
 
-      setMessage("Winjiye neza!");
-      // Redirect cyangwa genda kuri dashboard
-      // navigate("/dashboard");
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        let found = false;
+
+        // 3. Shaka email ihuye
+        for (const key in data) {
+          if (data[key].email === email) {
+            const fName = data[key].fName || "";
+            localStorage.setItem("username", fName);
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
+          setMessage("Email ntiyabonywe muri database.");
+        } else {
+          setMessage("Winjiye neza!");
+          navigate("/home"); // Redirect to home
+        }
+
+      } else {
+        setMessage("Document 'data' ntiyabonywe.");
+      }
+
     } catch (error) {
       setMessage("Injira ntibishobotse: " + error.message);
     }
@@ -33,34 +60,25 @@ const Login = () => {
       <form onSubmit={handleLogin}>
         {message && <div className="messageDiv">{message}</div>}
         <div className="input-group">
-          <i className="fas fa-user"></i>
-          <input
-            type="text"
-            placeholder="Username (optional)"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-
-        <div className="input-group">
           <i className="fas fa-envelope"></i>
           <input
             type="email"
+            id="email"
             placeholder="Email"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
         <div className="input-group">
           <i className="fas fa-lock"></i>
           <input
             type="password"
+            id="password"
             placeholder="Password"
             required
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
         <button className="btn" type="submit">Sign In</button>
       </form>
     </div>
