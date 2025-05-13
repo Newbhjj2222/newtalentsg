@@ -1,0 +1,70 @@
+.other-stories {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 15px;
+  background-color: #f7f9fc;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.other-stories h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: green;
+  text-align: center;
+}
+
+.story-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.story-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.story-content {
+  flex: 1;
+}
+
+.story-content h4 {
+  margin: 0 0 8px;
+  color: #222;
+  font-size: 18px;
+}
+
+.story-content p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.read-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  width: auto;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.read-btn:hover {
+  background-color: #1e7e34;
+}

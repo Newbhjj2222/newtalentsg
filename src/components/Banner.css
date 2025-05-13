@@ -1,0 +1,33 @@
+.banner {
+  width: 100%;
+  overflow: hidden;
+  background-color: #111;
+  padding: 10px 0;
+  margin-top: 60px;
+  color: white;
+  position: fixed;
+  z-index: 100;
+}
+
+.scroll-container {
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 60s linear infinite;
+  font-size: 12px;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}

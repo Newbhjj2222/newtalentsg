@@ -1,0 +1,166 @@
+.slider {
+  padding: 20px;
+  margin-top: 40px;
+  background-color: #f9f9f9;
+}
+
+.slider h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: green;
+  text-align: center;
+}
+
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.slider-track {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 10px;
+}
+
+.post {
+  min-width: 280px;
+  max-width: 320px;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  height: 400px;
+}
+
+
+.post:hover {
+  transform: translateY(-4px);
+}
+
+.post img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.post h4 {
+  margin: 12px 16px 4px;
+  font-size: 18px;
+  color: #222;
+}
+
+.post p {
+  margin: 0 16px 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.post small {
+  display: block;
+  margin: 0 16px 12px;
+  color: #999;
+  font-size: 12px;
+}
+
+.nav-button {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background-color: #ffffffdd;
+  border: none;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button:hover {
+  background-color: #f0f0f0;
+}
+
+.nav-button.prev {
+  left: 10px;
+}
+
+.nav-button.next {
+  right: 10px;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 400% 100%;
+  animation: shimmer 1.2s infinite linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+/* Responsive Layouts */
+@media (max-width: 768px) {
+  .slider h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .slider-track {
+    gap: 12px;
+  }
+
+  .post {
+    width: 100%;
+}
+
+  .post img {
+    width: 100%;
+    height: 260px;
+ }
+
+  .nav-button {
+    display: none; /* hide arrows on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .slider {
+    padding: 12px;
+  }
+
+  .post h4 {
+    font-size: 16px;
+  }
+
+  .post p {
+    font-size: 13px;
+  }
+}
